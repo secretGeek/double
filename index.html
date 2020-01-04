@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='en' class='darkmode'>
+<meta charset='utf-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+<style>
+.cell {
+  text-align:center;
+  line-height:50px;
+  vertical-align:middle;
+  display:inline-block;
+  border:1px solid #ccc;
+  min-width:calc(25% - 15px);
+  min-height:50px;
+  margin:5px 5px;
+  font-size:40px;
+	border-radius:5px;
+}
+.hidden {
+ border:1px solid #FFF;
+ visibility: hidden;
+}
+.red { 
+background-color:red;
+}
+.button {
+ min-width:calc(50% - 15px);
+ border:1px solid #000;
+}
+.selected {
+ box-shadow:0 0 2px blue,0 0 2px blue;
+ background-color:blue;
+}
+.target {
+ box-shadow:0 0 2px orange,0 0 2px orange;
+ background-color:orange;
+}
+.item,.cell {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", 
+	"Segoe UI Emoji", "Segoe UI Symbol";
+}
+</style>
+<body>
+<div class='binary'>
+	<div class='row r0' data-row='0'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r1' data-row='1'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r2' data-row='2'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r3' data-row='3'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+</div>
+<div class='hex'>
+	<div class='row r0' data-row='0'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r1' data-row='1'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r2' data-row='2'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row r3' data-row='3'>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+		<div class='cell'><span class='item'></span></div>
+	</div>
+	<div class='row'>
+		<div class='cell button'>add</div>
+	</div>
+</div>
+<script src="binary.js"></script>
+</body>
+</html>

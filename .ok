@@ -1,0 +1,4 @@
+tsc binary.ts # compile it
+code .
+n index.html
+n todo.md
