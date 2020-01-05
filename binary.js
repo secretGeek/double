@@ -1,14 +1,17 @@
+//TODO:
+// [ ] Dark mode
+//Done:
 // [no] Each time you replace one another arrives in the empty spot forever argh
 // [x] Make adding things slightly higher chance of bigger values
 // [x] Remove a snowman
 // [x] Remove lotion emoji
 // [x] Work out why button gets replaced with new thing added to it
 // [x] Indicate level
-// [ ] Button font: not emoji fontButton text “no spaces left” nah just disable button
+// [x] Button font: not emoji font
+// [x] Button text “no spaces left” nah just disable button
 // [no] xx Have them randomly arrive too
-// [ ] webmanifest and favicon based on emoji
-// [ ] Dark mode
-// [ ] Centre button
+// [x] webmanifest and favicon based on emoji
+// [no] Centre button
 // [x] Make button a button 
 var values = [];
 var mode = 'ready';
