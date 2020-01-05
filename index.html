@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang='en' class='darkmode'>
+<title>32-bit</title>
 <meta charset='utf-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<!-- favicons courtesy of https://favicon.io/emoji-favicons/robot-face/ -->
 <style>
-.cell {
+.cell,.button,.level {
   text-align:center;
   line-height:50px;
   vertical-align:middle;
@@ -21,9 +27,12 @@
 .red { 
   background-color:red;
 }
-.button {
+.button,.level {
   min-width:calc(50% - 15px);
   border:1px solid #000;
+}
+.level {
+  border:none;
 }
 .selected {
   box-shadow:0 0 2px blue,0 0 2px blue;
@@ -90,7 +99,8 @@
 		<div class='cell'><span class='item'></span></div>
 	</div>
 	<div class='row'>
-		<div class='cell button'>add</div>
+		<button class='button'>Fill</button>
+		<span class='level' id='level'>Level 0 (Score 0)</span>
 	</div>
 </div>
 <script src="binary.js"></script>
