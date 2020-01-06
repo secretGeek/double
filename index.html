@@ -17,6 +17,8 @@
  --button-border:#000;
  --target-bg:#AAA;
  --selected-bg:blue;
+ --button-bg:#CCC;
+ --button:#000;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -26,6 +28,9 @@
     --button-border:#FFF;
     --target-bg:#555;
     --selected-bg:#008;
+    --button-bg:#CCC;
+    --button:#000;
+
   }
 }
 body {
@@ -58,6 +63,10 @@ body {
 }
 .level {
   border:none;
+}
+.button {
+ background-color:var(--button-bg);
+ color:var(--button);
 }
 .selected {
   box-shadow:0 0 2px var(--selected-bg),0 0 2px var(--selected-bg);

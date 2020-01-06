@@ -19,7 +19,7 @@ var source = '';
 var target = '';
 var score = 0;
 var largestElement = 1;
-var emojis = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '⛅', '⛈', '🌤', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
+var emojis = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
 var selections = {}; //a cache of the possible values...
 function ready(fn) {
     if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -38,11 +38,10 @@ ready(function () {
     }
     var button = $('.button');
     button[0].addEventListener('click', button_click);
-    /*	for(var i = 0; i < 32; i++) {
-            button_click(null);
-        }
-    */
-    selectValue(32);
+    //for (var j = 0; j < 6; j++) {
+    //	console.log({level:j, max:Math.pow(2,j), choices:Selections(Math.pow(2,j))});
+    //}
+    fillAll();
 });
 function cell_click(f) {
     var idAttrib = f.target.attributes['id'];
@@ -141,13 +140,38 @@ function fill1() {
     var c = findEmptyCell();
     if (c != -1) {
         values[c] = selectValue(largestElement);
-        console.log({ c: c });
+        //console.log({c});
         var targety = $('.cell')[c];
         $('.cell')[c].innerHTML = "<span class='item' data-val='" + values[c] + "'>" + say(values[c]) + "</span>";
         //} else {
         //  $('.button')[0].innerHTML = 'no spaces left';
     }
     return c;
+}
+function Selections(largest) {
+    var level = Math.log2(largest);
+    if (selections[level] != undefined) {
+        return selections[level];
+    }
+    var results = [];
+    var counter = 0;
+    var value = 1;
+    var numRepeats = largest; //Math.pow(largest, 2);
+    // say the current largest number is 4, we're at level 2... and there are 6 possibles:
+    //1 ....                                                       0       0
+    //2 .... 1  1                                                  2       1
+    //4 .... 1  1  1  1  2  2                                      6       2
+    //8 .... 1  1  1  1  1  1  1  1  2  2  2  2  4  4   	       14      3
+    for (var ii = 0; ii < level; ii++) {
+        for (var jj = 0; jj < numRepeats; jj++) {
+            results[counter] = value;
+            counter++;
+        }
+        numRepeats = numRepeats / 2;
+        value = value * 2;
+    }
+    selections[level] = results;
+    return selections[level];
 }
 function selectValue(largest) {
     //largest = largest / 4;
@@ -162,25 +186,7 @@ function selectValue(largest) {
     //8 .... 1  1  1  1  1  1  1  1  2  2  2  2  4  4  8	       15
     if (largest <= 2)
         return 1;
-    if (selections[largest] == undefined) {
-        var results = [];
-        var n = 1;
-        var d = 0;
-        var x = largest;
-        for (var i = 0; i < (largest * 2 - 2); i++) {
-            d++;
-            results[i] = n;
-            if (d >= x) { //TECHNICALLY should be >= but this is better ratios.
-                d = 0;
-                x = x / 2;
-                n = n * 2;
-            }
-        }
-        selections[largest] = results;
-    }
-    else {
-        results = selections[largest];
-    }
+    var results = Selections(largest);
     var figure = Math.floor(Math.random() * (largest * 2 - 2));
     var result = results[figure];
     if (result == 0) {
@@ -212,7 +218,7 @@ function findEmptyCell() {
                 }
             }
             if (!found) {
-                console.log(values);
+                //console.log(values);
                 c = -1;
                 found = true;
             }
