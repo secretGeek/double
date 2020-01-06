@@ -10,12 +10,35 @@
 <title>32-bit</title>
 </head>
 <style>
+:root {
+ --main-bg:#FFF;
+ --main:#222;
+ --cell-border:#CCC;
+ --button-border:#000;
+ --target-bg:#AAA;
+ --selected-bg:blue;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg:#333;
+    --main:#CCC;
+    --cell-border:#444;
+    --button-border:#FFF;
+    --target-bg:#555;
+    --selected-bg:#008;
+  }
+}
+body {
+  background:var(--main-bg);
+	color:var(--main);
+}
+/*   background-color:var(--column-count-updn-bg); */
 .cell,.button,.level {
   text-align:center;
   line-height:50px;
   vertical-align:middle;
   display:inline-block;
-  border:1px solid #ccc;
+  border:1px solid var(--cell-border);
   min-width:calc(25% - 15px);
   min-height:50px;
   margin:5px 5px;
@@ -31,18 +54,18 @@
 }
 .button,.level {
   min-width:calc(50% - 15px);
-  border:1px solid #000;
+  border:1px solid var(--button-border);
 }
 .level {
   border:none;
 }
 .selected {
-  box-shadow:0 0 2px blue,0 0 2px blue;
-  background-color:blue;
+  box-shadow:0 0 2px var(--selected-bg),0 0 2px var(--selected-bg);
+  background-color:var(--selected-bg);
 }
 .target {
-  box-shadow:0 0 2px orange,0 0 2px orange;
-  background-color:orange;
+  box-shadow:0 0 2px var(--target-bg),0 0 2px var(--target-bg);
+  background-color: var(--target-bg);
 }
 .item,.cell {
  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

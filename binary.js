@@ -96,6 +96,7 @@ function swap(isource, itarget) {
         if (values[target] != 0) {
             cells[target].innerHTML = "<span class='item' data-val='" + values[target] + "'>" + say(values[target]) + "</span>";
             //button_click(null);
+            //fillAll();
         }
         else {
             cells[target].innerHTML = "<span class='item'></span>";
@@ -151,7 +152,7 @@ function fill1() {
 function selectValue(largest) {
     //largest = largest / 4;
     // ^^ was
-    largest = largest / 2;
+    largest = largest; // / 2;
     // assign a random value... but it has to be done according to a formula i've got in mind....
     // ...based on the current largest number out there....
     // say the current largest number is 2... then then there are 3 possibles:
