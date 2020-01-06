@@ -19,9 +19,11 @@
  --selected-bg:blue;
  --button-bg:#CCC;
  --button:#000;
+ --emoji-outline:#CCC;
 }
 @media (prefers-color-scheme: dark) {
   :root {
+    --emoji-outline:#666;
     --main-bg:#333;
     --main:#CCC;
     --cell-border:#444;
@@ -64,8 +66,8 @@ body {
 .level {
   border:none;
 }
-.button {
- background-color:var(--button-bg);
+button.button {
+ background-color:var(--button-bg) !important; /* can't get this working on iOS */
  color:var(--button);
 }
 .selected {
@@ -78,6 +80,16 @@ body {
 }
 .item,.cell {
  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.item {
+   -xwebkit-text-stroke: 2px var(--emoji-outline);
+   color: white;
+   text-shadow:
+       3px 3px 0 var(--emoji-outline),
+     -1px -1px 0 var(--emoji-outline),  
+      1px -1px 0 var(--emoji-outline),
+      -1px 1px 0 var(--emoji-outline),
+       1px 1px 0 var(--emoji-outline);
 }
 </style>
 <body>
