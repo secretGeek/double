@@ -1,6 +1,7 @@
 //TODO:
-// [ ] Dark mode
+// [ ] only show 4 at first. once level is > 4 -- begin showing more items.
 //Done:
+// [x] Dark mode
 // [no] Each time you replace one another arrives in the empty spot forever argh
 // [x] Make adding things slightly higher chance of bigger values
 // [x] Remove a snowman
@@ -21,6 +22,7 @@ var score = 0;
 var largestElement = 1;
 var emojis = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
 var selections = {}; //a cache of the possible values...
+var numCells = 4;
 function ready(fn) {
     if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
         fn();
@@ -41,6 +43,7 @@ ready(function () {
     //for (var j = 0; j < 6; j++) {
     //	console.log({level:j, max:Math.pow(2,j), choices:Selections(Math.pow(2,j))});
     //}
+    levelUp(2);
     fillAll();
 });
 function cell_click(f) {
@@ -76,6 +79,20 @@ function cell_click(f) {
 function sayScore() {
     $id('level').innerHTML = "Level " + Math.log2(largestElement) + " (Score " + score + ")";
 }
+function levelUp(largest) {
+    var cells = $(".cell");
+    var level = Math.log2(largest);
+    numCells = Math.floor(level / 4) * 4 + 4;
+    console.log({ cells: cells.length, level: level, largest: largest, numCells: numCells });
+    for (var i = 0; i < 32; i++) {
+        if (i < numCells) {
+            cells[i].classList.remove("hide");
+        }
+        else {
+            cells[i].classList.add("hide");
+        }
+    }
+}
 function swap(isource, itarget) {
     var source = 1.0 * (isource.replace('i', ''));
     var target = 1.0 * (itarget.replace('i', ''));
@@ -90,6 +107,7 @@ function swap(isource, itarget) {
         score += tValue;
         if (values[target] > largestElement) {
             largestElement = values[target];
+            levelUp(largestElement);
         }
         sayScore();
         if (values[target] != 0) {
@@ -202,7 +220,7 @@ function findEmptyCell() {
     var i = 0;
     while (!found) {
         c = randomCell();
-        if (c == 32) {
+        if (c == numCells) {
             alert('xxxxxx');
         }
         if (values[c] == 0)
@@ -210,7 +228,7 @@ function findEmptyCell() {
         i++;
         if (i == 70 && found != true) {
             //check every cell... return the first one
-            for (var ii = 0; ii < 32; ii++) {
+            for (var ii = 0; ii < numCells; ii++) {
                 if (values[ii] == 0) {
                     found = true;
                     c = ii;
@@ -227,7 +245,7 @@ function findEmptyCell() {
     return c;
 }
 function randomCell() {
-    return Math.floor(Math.random() * 32);
+    return Math.floor(Math.random() * numCells);
 }
 function jalert(o) {
     //never use this.
