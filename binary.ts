@@ -94,7 +94,7 @@ function sayScore(){
 function levelUp(largest){
 	var cells = $(".cell");
 	var level = Math.log2(largest);
-	numCells = Math.floor(level / 4) * 4 + 4;
+	numCells = Math.floor((level+1) / 4) * 4 + 4;
 	console.log({cells:cells.length, level:level, largest:largest, numCells:numCells});
 	for(var i = 0; i < 32; i++) {
 		if (i<numCells) {
@@ -165,14 +165,12 @@ function fillAll() {
 }
 
 function fill1() {
-    var c = findEmptyCell();
+	var c = findEmptyCell();
+	
 	if (c != -1) {
 	  values[c] = selectValue(largestElement);
-		  //console.log({c});
-		  var targety = $('.cell')[c];
+	  var targety = $('.cell')[c];
 	  $('.cell')[c].innerHTML =  "<span class='item' data-val='" + values[c] + "'>"+say(values[c])+"</span>";
-	//} else {
-	//  $('.button')[0].innerHTML = 'no spaces left';
 	}
 	return c;
 }
