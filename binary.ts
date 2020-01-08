@@ -48,7 +48,7 @@ ready(function() {
 	//	console.log({level:j, max:Math.pow(2,j), choices:Selections(Math.pow(2,j))});
 	//}
 	levelUp(2);
-	fillAll();
+	//fillAll();
 	
 });
 
@@ -177,8 +177,6 @@ function fill1() {
 
 function Selections(largest) {
 
-
-
 	let level = Math.log2(largest);
 
 	if (selections[level] != undefined){
@@ -201,9 +199,10 @@ function Selections(largest) {
 			results[counter] = value;
 			counter++;
 		}
-		numRepeats = numRepeats/2;
+		numRepeats = numRepeats/1.5;
 		value = value * 2;
 	}
+	//console.log({level:level, results:results});
 	selections[level] = results;
 
 	return selections[level]
