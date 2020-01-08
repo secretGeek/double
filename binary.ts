@@ -44,7 +44,7 @@ ready(function() {
 	var button = $('.button');
 	button[0].addEventListener('click',button_click);
 
-	//for (var j = 0; j < 6; j++) {
+	//for (var j = 0; j < 10; j++) {
 	//	console.log({level:j, max:Math.pow(2,j), choices:Selections(Math.pow(2,j))});
 	//}
 	levelUp(2);
@@ -224,7 +224,8 @@ function selectValue(largest) {
 	
 	let results = Selections(largest);
 
-	var figure = Math.floor(Math.random() * (largest * 2 - 2));	
+	//var figure = Math.floor(Math.random() * (largest * 2 - 2));	
+	let figure =  Math.floor(Math.random() * results.length);	
 	var result = results[figure];
     if (result == 0 ) {
 		alert('x');
