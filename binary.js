@@ -1,5 +1,13 @@
 //TODO:
-// [ ] only show 4 at first. once level is > 4 -- begin showing more items.
+// [x] add a heading
+// [x] center the thing vertically (maybe pin to bottom of screen instead of top?)
+// [x] random emojis
+// [x] double clicking leads to zooming
+// [ ] decrease the most powerful emojis
+// [ ] make test version: given parameter test it will.........
+//      [ ] ALLOW you to configure the divisor used in the setting of the parameters
+//      [  ] show (as emojis) the list of things that are selected from when it is sending you new things
+// [x] only show 4 at first. once level is > 4 -- begin showing more items.
 //Done:
 // [x] Dark mode
 // [no] Each time you replace one another arrives in the empty spot forever argh
@@ -9,7 +17,7 @@
 // [x] Work out why button gets replaced with new thing added to it
 // [x] Indicate level
 // [x] Button font: not emoji font
-// [x] Button text “no spaces left” nah just disable button
+// [x] Button text "no spaces left" nah just disable button
 // [no] xx Have them randomly arrive too
 // [x] webmanifest and favicon based on emoji
 // [no] Centre button
@@ -20,7 +28,8 @@ var source = '';
 var target = '';
 var score = 0;
 var largestElement = 1;
-var emojis = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
+var emojiMenu = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
+var emojis = [];
 var selections = {}; //a cache of the possible values...
 var numCells = 4;
 function ready(fn) {
@@ -43,9 +52,19 @@ ready(function () {
     //for (var j = 0; j < 10; j++) {
     //	console.log({level:j, max:Math.pow(2,j), choices:Selections(Math.pow(2,j))});
     //}
+    randomEmojis();
     levelUp(2);
     //fillAll();
 });
+function randomEmojis() {
+    var numEmojis = emojiMenu.length;
+    for (var i = 0; i < numEmojis; i++) {
+        var grabbed = Math.floor(Math.random() * emojiMenu.length);
+        emojis.push(emojiMenu[grabbed]);
+        emojiMenu.splice(grabbed, 1);
+    }
+    console.log(emojis);
+}
 function cell_click(f) {
     var idAttrib = f.target.attributes['id'];
     if (idAttrib == undefined) {
@@ -192,7 +211,7 @@ function Selections(largest) {
 function selectValue(largest) {
     //largest = largest / 4;
     // ^^ was
-    largest = largest; // / 2;
+    largest = largest / 2; // / 2;
     // assign a random value... but it has to be done according to a formula i've got in mind....
     // ...based on the current largest number out there....
     // say the current largest number is 2... then then there are 3 possibles:

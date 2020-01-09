@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang='en' class='darkmode'>
 <head>
-<meta charset='utf-8' name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta charset='utf-8' name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -20,6 +21,12 @@
  --button-bg:#CCC;
  --button:#000;
  --emoji-outline:#CCC;
+ --main-title-shadow:#AAA;
+ --main-title-shadow1:#FF0;
+ --main-title-shadow2:#48F;
+ --main-title-shadow3:#4F8;
+ --main-title-shadow4:#F00;
+
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -32,14 +39,32 @@
     --selected-bg:#008;
     --button-bg:#CCC;
     --button:#000;
-
+    --main-title-shadow:#555;
+    --main-title-shadow1:#880;
+    --main-title-shadow2:#248;
+    --main-title-shadow3:#284;
+    --main-title-shadow4:#800;
   }
 }
 body {
   background:var(--main-bg);
 	color:var(--main);
 }
-/*   background-color:var(--column-count-updn-bg); */
+h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size:4ch;
+  color:var(--main);
+	margin-left:10px;
+	text-shadow:1px 1px var(--main-title-shadow1), 
+	2px 2px var(--main-title-shadow1), 
+	3px 3px var(--main-title-shadow2), 
+	4px 4px var(--main-title-shadow2),
+	5px 5px var(--main-title-shadow3), 
+	6px 6px var(--main-title-shadow3), 
+	7px 7px var(--main-title-shadow4),
+	8px 8px var(--main-title-shadow4);
+
+}
 .cell,.button,.level {
   text-align:center;
   line-height:50px;
@@ -65,9 +90,16 @@ body {
 .button,.level {
   min-width:calc(50% - 15px);
   border:1px solid var(--button-border);
+	min-height:90px;
 }
 .level {
   border:none;
+  max-width:calc(50% - 15px);
+	min-width:calc(50% - 15px);
+	font-size:5vw;
+}
+.binary {
+ width:calc(100% - 35px);
 }
 button.button {
  background-color:var(--button-bg) !important; /* can't get this working on iOS */
@@ -94,8 +126,19 @@ button.button {
       -1px 1px 0 var(--emoji-outline),
        1px 1px 0 var(--emoji-outline);
 }
+.binary {
+  position:absolute;
+	bottom:0;
+}
+.button_level {
+  margin-top:15px;
+	margin-bottom:25px;
+}
 </style>
 <body>
+<h1>32-Bit</h1>
+
+
 <div class='binary'>
 	<div class='row r0' data-row='0'>
 		<div class='cell'><span class='item'></span></div>
@@ -121,8 +164,6 @@ button.button {
 		<div class='cell'><span class='item'></span></div>
 		<div class='cell'><span class='item'></span></div>
 	</div>
-</div>
-<div class='hex'>
 	<div class='row r0' data-row='0'>
 		<div class='cell'><span class='item'></span></div>
 		<div class='cell'><span class='item'></span></div>
@@ -147,11 +188,13 @@ button.button {
 		<div class='cell'><span class='item'></span></div>
 		<div class='cell'><span class='item'></span></div>
 	</div>
-	<div class='row'>
+	<div class='row button_level'>
 		<button class='button'>Fill</button>
 		<span class='level' id='level'>Level 0 (Score 0)</span>
 	</div>
+	
 </div>
 <script src="binary.js"></script>
 </body>
 </html>
+
