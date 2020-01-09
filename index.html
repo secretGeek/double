@@ -21,6 +21,7 @@
  --button-bg:#CCC;
  --button:#000;
  --emoji-outline:#CCC;
+ --emoji-outline-gal:rgba(205,133,63,0.2);
  --main-title-shadow:#AAA;
  --main-title-shadow1:#FF0;
  --main-title-shadow2:#48F;
@@ -31,6 +32,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --emoji-outline:#666;
+    --emoji-outline-gal:rgba(255,215,0,0.2);
     --main-bg:#333;
     --main:#CCC;
     --cell-border:#444;
@@ -113,18 +115,24 @@ button.button {
   box-shadow:0 0 2px var(--target-bg),0 0 2px var(--target-bg);
   background-color: var(--target-bg);
 }
-.item,.cell {
+.item,.cell,.gallery {
  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 .item {
    -xwebkit-text-stroke: 2px var(--emoji-outline);
    color: white;
    text-shadow:
-       3px 3px 0 var(--emoji-outline),
      -1px -1px 0 var(--emoji-outline),  
       1px -1px 0 var(--emoji-outline),
       -1px 1px 0 var(--emoji-outline),
        1px 1px 0 var(--emoji-outline);
+}
+.gallery {
+   -webkit-text-stroke: 1px var(--emoji-outline-gal);
+   xcolor: white;
+   text-shadow: 0 0 0.5px var(--emoji-outline-gal);
+   
+
 }
 .binary {
   position:absolute;
@@ -134,10 +142,14 @@ button.button {
   margin-top:15px;
 	margin-bottom:25px;
 }
+.gallery {
+  xopacity:0.7;
+}
 </style>
 <body>
 <h1>32-Bit</h1>
-
+<div class='gallery' id='gallery'>
+</div>
 
 <div class='binary'>
 	<div class='row r0' data-row='0'>

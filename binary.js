@@ -3,7 +3,8 @@
 // [x] center the thing vertically (maybe pin to bottom of screen instead of top?)
 // [x] random emojis
 // [x] double clicking leads to zooming
-// [ ] decrease the most powerful emojis
+// [ ] show a gallery of values so far
+// [ ] decrease the likelihood of the most powerful emojis
 // [ ] make test version: given parameter test it will.........
 //      [ ] ALLOW you to configure the divisor used in the setting of the parameters
 //      [  ] show (as emojis) the list of things that are selected from when it is sending you new things
@@ -110,6 +111,13 @@ function levelUp(largest) {
         else {
             cells[i].classList.add("hide");
         }
+    }
+    var gall = '';
+    if (level > 2) {
+        for (var ii = 0; ii <= level; ii++) {
+            gall += emojis[ii];
+        }
+        $id('gallery').innerHTML = gall;
     }
 }
 function swap(isource, itarget) {
