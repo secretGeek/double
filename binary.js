@@ -1,10 +1,12 @@
 //TODO:
+// [ ] save state
+// [ ] refresh button
 // [x] add a heading
 // [x] center the thing vertically (maybe pin to bottom of screen instead of top?)
 // [x] random emojis
 // [x] double clicking leads to zooming
-// [ ] show a gallery of values so far
-// [ ] decrease the likelihood of the most powerful emojis
+// [x] show a gallery of values so far
+// [ ] decrease/alter the likelihood of the most powerful emojis
 // [ ] make test version: given parameter test it will.........
 //      [ ] ALLOW you to configure the divisor used in the setting of the parameters
 //      [  ] show (as emojis) the list of things that are selected from when it is sending you new things
@@ -29,7 +31,12 @@ var source = '';
 var target = '';
 var score = 0;
 var largestElement = 1;
-var emojiMenu = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄', '❤', '🧡', '💛', '💙', '💚', '💜', '🖤', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠', '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '👻', '🙈', '👺', '🚝', '🥜', '👹', '🤖', '💴', '💵'];
+var emojiMenu = ['🌑', '🌒', '🌓', '🌔', '🌕', '☁', '🌤', '⛅', '⛈', '❄', '⛄', '🔥', '🌊', '☔', '🌠', '☄',
+    '💛', '💚', '💜', '👻', '👽', '👾', '🤖', '🤓', '🧐', '👹', '💀', '☠',
+    '😸', '🙉', '🦒', '🦔', '🦑', '🐙', '🦞', '🦀', '🦋', '👣', '😀', '😫', '🙈',
+    '👺', '🚝', '🥜', '👹', '💴', '💵', '💌', '🔏', '🥑', '☕', '🤹‍♀️', '🌆', '🥓',
+    '🧁', '🥝', '🍉', '🌺', '🍹', '🍖', '🍝', '🍣', '💩', '🦄', '🐟', '🐠', '🦚',
+    '🦠', '🦢', '🦷', '🥶', '🤢', '👩‍🎤', '👩‍🚀', '🧶', '👙', '💎', '🎯', '🔮', '🎲', '🎼', '⚗', '💊', '🗿', '💡', '💰', '🕰'];
 var emojis = [];
 var selections = {}; //a cache of the possible values...
 var numCells = 4;
@@ -198,7 +205,7 @@ function Selections(largest) {
     var results = [];
     var counter = 0;
     var value = 1;
-    var numRepeats = largest; //Math.pow(largest, 2);
+    var numRepeats = largest;
     // say the current largest number is 4, we're at level 2... and there are 6 possibles:
     //1 ....                                                       0       0
     //2 .... 1  1                                                  2       1
@@ -219,7 +226,7 @@ function Selections(largest) {
 function selectValue(largest) {
     //largest = largest / 4;
     // ^^ was
-    largest = largest / 2; // / 2;
+    largest = largest / 2;
     // assign a random value... but it has to be done according to a formula i've got in mind....
     // ...based on the current largest number out there....
     // say the current largest number is 2... then then there are 3 possibles:
@@ -230,7 +237,6 @@ function selectValue(largest) {
     if (largest <= 2)
         return 1;
     var results = Selections(largest);
-    //var figure = Math.floor(Math.random() * (largest * 2 - 2));	
     var figure = Math.floor(Math.random() * results.length);
     var result = results[figure];
     if (result == 0) {
@@ -246,9 +252,6 @@ function findEmptyCell() {
     var i = 0;
     while (!found) {
         c = randomCell();
-        if (c == numCells) {
-            alert('xxxxxx');
-        }
         if (values[c] == 0)
             found = true;
         i++;
@@ -272,10 +275,6 @@ function findEmptyCell() {
 }
 function randomCell() {
     return Math.floor(Math.random() * numCells);
-}
-function jalert(o) {
-    //never use this.
-    alert(JSON.stringify(o));
 }
 /* utility functions */
 function htmlToElement(html) {
