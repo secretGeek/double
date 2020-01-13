@@ -34,7 +34,7 @@ var target = '';
 var score = 0;
 var largestElement = 1;
 var emojiMenu = ['🌑','🌒','🌓','🌔','🌕','☁','🌤','⛅','⛈','❄','⛄','🔥','🌊','☔','🌠','☄',
-'💛','💚','💜','👻','👽','👾','🤖','🤓','🧐','👹','💀','☠',
+'💛','💚','💜','👻','👽','👾','🤖','🤓','🧐','💀','☠',
 '😸','🙉','🦒','🦔','🦑','🐙','🦞','🦀','🦋','👣','😀','😫','🙈',
 '👺','🚝','🥜','👹','💴','💵','💌','🔏','🥑','☕','🤹‍♀️','🌆','🥓',
 '🧁','🥝','🍉','🌺','🍹','🍖','🍝','🍣','💩','🦄','🐟','🐠','🦚',
@@ -71,12 +71,23 @@ ready(function() {
 	
 });
 
+
+
+
 function randomEmojis() {
   let numEmojis = emojiMenu.length;
+  emojis = [];
   for(var i = 0; i < numEmojis; i++) {
 	let grabbed =  Math.floor(Math.random() * emojiMenu.length);	  
+
+	for(var j = 0; j < emojis.length; j ++) {
+		if (emojis[j] == emojiMenu[grabbed]){
+			console.log('DUPLICATE EMOJIPAH: ' + emojiMenu[grabbed]);
+		}
+	}
 	emojis.push(emojiMenu[grabbed]);
 	emojiMenu.splice(grabbed,1);
+	
   }
   console.log(emojis);
 
